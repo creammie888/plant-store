@@ -1,47 +1,63 @@
-version: "3.8"
+version: '3.9'
 
 services:
   db:
-    image: postgres:latest
-    container_name: oxygen-db
+    image: postgres:14
+    container_name: pg_db
+    restart: always
     environment:
-      POSTGRES_DB: plantdb   
+      POSTGRES_DB: plantdb
       POSTGRES_USER: opol
-      POSTGRES_PASSWORD: opolzaa123 
+      POSTGRES_PASSWORD: opolzaa123
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/plants.sql:/docker-entrypoint-initdb.d/plants.sql
     ports:
       - "5432:5432"
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U opol"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
-    container_name: oxygen-backend
-    command: python3 manage.py runserver 0.0.0.0:8000
+    container_name: django_backend
+    command: >
+      sh -c "
+      until pg_isready -h db -U opol;
+      do
+        echo 'Waiting for Postgres...';
+        sleep 2;
+      done;
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend:/app
-    depends_on:
-      - db
-    environment:
-      - DB_HOST=db
-      - DB_NAME=plantdb   
-      - DB_USER=opol        
-      - DB_PASSWORD=opolzaa123 
     ports:
       - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_NAME: plantdb
+      DB_USER: opol
+      DB_PASSWORD: opolzaa123
+      DB_HOST: db
+      DB_PORT: 5432
+
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
-    container_name: oxygen-frontend
-    environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+    container_name: next_frontend
+    command: npm run dev
+    volumes:
+      - ./frontend:/app
     ports:
       - "3000:3000"
-    stdin_open: true
-    tty: true
+    env_file:
+      - ./frontend/.env.local 
 
 volumes:
-  postgres-data:
+  pgdata:

@@ -32,7 +32,7 @@ export default function FavoritesPage() {
           favoritePlants.map((plant) => (
             <div className="card-reccommend" key={plant.id}>
               <div className="image-box">
-                <img src={plant.image} alt={plant.name} />
+              <img src={`/plants/${plant.image_path}`} alt={plant.name} />
               </div>
               <div className="card-info">
                 <p className="name">{plant.name}</p>

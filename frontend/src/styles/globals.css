@@ -42,73 +42,126 @@ a {
 
 
 .product-container-box {
-  margin-top: 150px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-top: 100px;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: start;
+  align-items: center;
   width: 100%;
   height: 100%;
 }
 
 .product-image {
-  width: 50%;
+  width: 50vw;
+  margin-left: 50px;
+  /* position: relative; */
 }
 
 .product-image img{
   width: 100%;
   height: auto;
-  position: relative;
 }
 
 .btn-fav3 {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 50px;
+  right: 10%; */
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-fav3 button{
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  /* border:  1px solid #b0b0b0; */
+  border-radius: 7px;
+  text-align: center;
+  padding-top:4px ;
+  background: none;
   
-  transform: translateX(50%);
+}
+
+.btn-fav3:hover{
+  transform: scale(1.2);
+}
+
+.btn-fav3.isFav{
+  border: none;
 }
 
 .product-info {
-  margin-top: 70px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 40%;
 }
 
 .product-info h1{
-  font-size: 40px;
+  font-size: 50px;
+  color: #5c9236;
 }
 
-.product-price span{
-  font-size: 25px;
-  font-weight: 500;
-  color: var(--primary--color);
+.product-description {
+  font-size: 14px;
+  color: #333;
+  width: 50%;
 }
 
-.product-price {
+.detail-box {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: start;
+  align-items: center;
+  
+}
+
+.detail-icon{
   font-size: 20px;
-  /* background-color: var(--primary--color); */
-  border: 1px solid var(--secondary--color);
-  /* color: white; */
-  border-radius: 30px;
-  display: inline-block;
-  padding: 4px 8px;
-  max-width: 200px;
-  text-align: center;
+}
+
+.detail-box p {
+  font-size: 12px;
+
+}
+.detail-box p span{
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.detail-tips {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  font-size: 12px;
+  gap: 20px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.detail-tips p:last-child {
+  flex-wrap: wrap;
+  width: 300px;
+  font-weight: 400;
+}
+
+
+.detail-box .product-price {
+  font-size: 30px;
+  font-weight: 500;
+  color: #5c9236;
 }
 
 .btn-add-cart3 {
   border: none;
-  border-radius: 30px;
+  border-radius: 10px;
   background-color: var(--primary--color);
   color: white;
-  padding: 20px;
-  max-width: 300px;
+  padding: 10px 50px;
 }
 
-.product-description {
-  font-size: 15px;
-  color: #333;
-}
 

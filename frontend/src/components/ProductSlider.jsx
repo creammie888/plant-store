@@ -1,22 +1,27 @@
 "use client";
 
-import React, { useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-import {FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import "./ProductSlider.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import FavoriteButton from "@/components/FavoriteButton";
-import originalProducts from "@/data/products";
 
 export default function ProductSlider() {
+  const [plants, setPlants] = useState([]);
 
-
-  const [isFav, setIsFav] = useState(false);
-  
-  
-
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/`)
+      .then((res) => res.json())
+      .then((data) => {
+        // สุ่ม 5 ตัวจากทั้งหมด
+        const shuffled = [...data].sort(() => 0.5 - Math.random());
+        setPlants(shuffled.slice(0, 5));
+      })
+      .catch((err) => console.error("Error fetching plants:", err));
+  }, []);
 
   return (
     <div className="slider-container">
@@ -29,15 +34,13 @@ export default function ProductSlider() {
         autoplay={{ delay: 7000 }}
         grabCursor={true}
       >
-        {originalProducts.slice(0, 5).map((item) => (
+        {plants.map((item) => (
           <SwiperSlide key={item.id}>
             <div className="slide">
-              <img src={item.image} alt={item.name} />
+              <img src={`/plants/${item.image_path}`} alt={item.name} />
               <div className="text-overlay">
                 <h3>{item.name}</h3>
-                <p className="description">
-                  {item.description}
-                </p>
+                <p className="description">{item.description}</p>
                 <p className="price">฿{item.price}</p>
                 <div className="container-btn">
                   <button className="btn-add-cart">Add to cart</button>
@@ -51,4 +54,3 @@ export default function ProductSlider() {
     </div>
   );
 }
-        
