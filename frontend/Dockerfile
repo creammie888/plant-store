@@ -1,12 +1,16 @@
-# frontend/Dockerfile
-
 FROM node:18
 
 WORKDIR /app
 
+COPY package*.json ./
+RUN npm install
+
+RUN ls -la node_modules/.bin && npx next --version
+
 COPY . .
 
-RUN npm install
 RUN npm run build
 
-CMD ["npm", "run", "dev"]
+EXPOSE 3000
+
+CMD ["npx", "next", "start"]
