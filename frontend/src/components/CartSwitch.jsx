@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import './CartSwitch.css';
+import './CartSwitch.module.css';
 
 const CartSwitch = ({ activeTab }) => {
   return (

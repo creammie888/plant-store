@@ -1,23 +1,7 @@
-import { Geist, Geist_Mono,  Prompt ,Montserrat} from "next/font/google";
+import {Montserrat} from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const promptFont = Prompt({
-  subsets: ["latin"],
-  weight: ["100","200","300","400", "500", "600", "700"],
-  variable: "prompt"
-});
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -32,7 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en"  className={`${montserrat.variable}`}>
       <body>
           <Navbar />
           <main>{children}</main>

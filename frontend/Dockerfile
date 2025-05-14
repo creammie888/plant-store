@@ -2,10 +2,9 @@ FROM node:18
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
-
-RUN ls -la node_modules/.bin && npx next --version
 
 COPY . .
 

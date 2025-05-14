@@ -3,7 +3,7 @@
 import { useParams,useState  } from "next/navigation";
 import originalProducts from "@/data/products";
 import FavoriteButton from "@/components/FavoriteButton";
-import "./product.css";
+import "@/styles/globals.css";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -12,15 +12,15 @@ export default function ProductDetailPage() {
   if (!product) return <p>Product not found</p>;
 
   return (
-    <div className="product-container">
+    <div className="product-container-box">
         <div className="product-image">
             <img src={product.image} alt={product.name} />
             <div className="btn-fav3"><FavoriteButton plantId={product.id} /></div>
         </div>
         <div className="product-info">
             <h1>{product.name}</h1>
-            <p className="price">Price: <span>฿{product.price}</span></p>
-            <p className="description">{product.description}</p>
+            <p className="product-price">Price: <span>฿{product.price}</span></p>
+            <p className="product-description">{product.description}</p>
             <button className="btn-add-cart3">Add to Cart</button>
         </div>
 
