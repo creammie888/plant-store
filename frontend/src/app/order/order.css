@@ -1,0 +1,193 @@
+.order-content {
+    padding: 20px;
+}
+
+.order-page {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+    flex-wrap: wrap;
+
+}
+
+.order-container1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* border: 1px solid var(--secondary--color); */
+    border-radius: 15px;
+    padding: 0px 30px;
+    /* height: 315px; */
+    height: 325px;
+    overflow-y: scroll;
+    min-width: 400px;
+    max-width: 200px;
+
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--secondary--color) transparent;
+}
+
+/* สำหรับ Chrome, Edge และ Safari */
+.order-container1::-webkit-scrollbar {
+    width: 6px; /* ความกว้างของ Scrollbar */
+  }
+  
+  .order-container1::-webkit-scrollbar-thumb {
+    border-radius: 10px; /* รูปทรงมน */
+  }
+  
+  .order-container1::-webkit-scrollbar-track {
+    background: transparent; /* ทำให้ไม่มี Border ของ Track */
+  }
+
+.order-card {
+    height: 100px;
+    width: 100%;
+    /* border: 1px solid var(--secondary--color); */
+    border-radius: 10px;
+    border: 1px solid #e2e2e2;
+    background-color: #f3f3f3;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.order-container2 {
+    border: 1px solid var(--secondary--color);
+    background-color: #efefef;
+    border: 1px solid #e2e2e2;
+    border-radius: 15px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.order-card img{
+    height: 90px;
+    width: auto;
+    object-fit: contain;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.order-info p {
+    font-weight: 500;
+    color: var(--primary--color);
+}
+
+.order-info p span{
+    font-size: 12px;
+    font-weight: 500;
+    color: black;
+}
+
+.btn-quantity {
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-add-delete {
+    width: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid var(--primary--color);
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-add-delete:hover {
+    background-color: var(--primary--color);
+    color: white;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.discount-box {
+    display: flex;
+    gap: 10px;
+}
+
+.discount-box input{
+    border: none;
+    background-color: #e7e7e7;
+    /* background-color: #dedede; */
+    border: 1px solid #c2c2c2;
+    padding: 10px 20px;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.discount-box button{
+    border: none;
+    /* background-color: #e7e7e7; */
+    background-color: #dedede;
+    padding: 10px 20px;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+.discount-box button:hover{
+    background-color: var(--primary--color);
+    color: white;
+    cursor: pointer;
+}
+.price-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.price-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+
+.net-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+
+
+}
+
+.btn-continue {
+    width: 100%;
+    background-color: var(--primary--color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-continue:hover {
+    background-color: var(--secondary--color);
+}

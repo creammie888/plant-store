@@ -1,0 +1,21 @@
+.confirm-info h2{
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.confirm-info p{
+    font-size: 11px;
+    flex-wrap: wrap;
+    width: 70%;
+    color: #8a8a8a;
+}
+.confirm-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: #e6e6e6;
+}

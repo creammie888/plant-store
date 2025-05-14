@@ -1,0 +1,40 @@
+:root {
+  --primary--color: #94ba78;
+  --secondary--color: #5F764E;
+  --gray--color: #D4D4D4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  /* font-family: "Prompt", sans-serif; */
+  color: #333;
+  background: linear-gradient(90deg, #ffffff, #ECECEC);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+button, input, select, textarea {
+  font-family: 'Montserrat', sans-serif;
+}
+
+input {
+  opacity: 0.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+

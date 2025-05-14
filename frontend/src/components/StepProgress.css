@@ -1,0 +1,103 @@
+.step-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+    margin: 20px;
+    font-size: 16px;
+    color: var(--gray--color);
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .step {
+    text-transform: capitalize;
+    transition: color 0.3s;
+  }
+  
+  .step.active {
+    font-weight: 500;
+    color: #707070;
+  }
+  
+  .arrow {
+    margin: 0 8px;
+    font-weight: 300;
+    color: var(--gray--color);
+  }
+
+  .step-container {
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  
+
+  .step-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 3px solid #f4f4f4;
+    background-color: #ddd;
+    transition: background-color 0.3s, border-color 0.3s;
+    z-index: 10;
+  }
+  
+  .step-circle.active {
+    background-color: #f5fff1;
+    border-color: #8bbe75;
+  }
+  
+  .step-line {
+    width: 120px;
+    height: 2px;
+    background-color: #ddd;
+    position: absolute;
+    transform: translateY(7px) translateX(55px);
+    transition: background-color 0.3s;
+  }
+
+  /* .step-line.active {
+     background: linear-gradient(90deg, #6AA84F, #ddd);
+  } */
+
+  .step-line.active {
+    background-color: #6AA84F;
+  }
+  
+  .step-line.gradient::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #6AA84F, #ddd);
+    transition: width 2s ease-in-out;
+    animation: gradient-animation 1s forwards;
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  
+  .step-label {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #aaaaaa;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .step-label.active {
+    color: var(--secondary--color);
+  }
+  

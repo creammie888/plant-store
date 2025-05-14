@@ -1,0 +1,62 @@
+.order-container3 {
+    border-radius: 20px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* background-color: #e9e9e9; */
+    background-color: #ededed;
+    border: 1px solid #e2e2e2;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    width: 100%;
+    min-width: 200px;
+    max-width: 600px;
+}
+
+.input-address {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-address p{
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    color: #575757;
+}
+
+
+.input-address input {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #e2e2e2;
+    /* border-radius: 6px; */
+    /* border: none; */
+    outline: none;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease; */
+    background-color: #ffffff;
+}
+
+.input-address2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    gap: 10px;
+}
+.input-address2 .input-address {
+    flex: 1 1 30%; /* ขยายได้ตามพื้นที่ที่มี แต่ไม่เกิน 30% */
+    min-width: 150px;
+    max-width: 200px;
+    
+  }
+
+.order-container3 .btn-continue {
+    margin: 20px;
+    width: 300px;
+    /* padding: 10px 50px; */
+}

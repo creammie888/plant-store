@@ -1,0 +1,136 @@
+.catalog-container {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.catalog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.catalog-content h1 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+
+
+.products-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 70px;
+    
+}
+
+.product {
+    width: 200px;
+    height: 250px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.image-box {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+
+
+
+.image-box img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.product:hover {
+    transform: scale(1.15);
+    z-index: 10;
+    position: relative;
+    opacity: 1;
+}
+  
+  
+
+  .card-info {
+      margin: 10px;
+      width: 90%;
+  
+  }
+  
+  .card-info p{
+      text-align: start;
+      font-size: 16px;
+      font-weight: 500;
+  }
+  
+  .price {
+      color: var(--primary--color);
+      font-size: small;
+      margin-left: 10px;
+  }
+
+  
+    .card-info-row {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .container-btn2 {
+      display: flex;
+      gap: 10px;
+      
+    }
+  
+    .container-btn2 button:first-child{
+      border: none;
+      background-color: var(--primary--color);
+      color: white;
+      padding: 0 6px;
+      border-radius: 10%;
+      font-size: large;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+  
+    .container-btn2 button:first-child:hover{
+      background-color: var(--secondary--color);
+    }
+  
+    .container-btn22 button:last-child{
+      border: none;
+      background: none;
+      color:#333;
+      font-size: medium;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+  
+    .container-btn2 button:last-child:hover{
+      transform: scale(1.3);
+    }
+  
