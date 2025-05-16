@@ -28,7 +28,7 @@ services:
     buildFilter:
       paths:
         - frontend/**
-    startCommand: npm start
+    startCommand: npm run start
     envVars:
       - key: NODE_ENV
         value: production
