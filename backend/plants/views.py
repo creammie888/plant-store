@@ -1,6 +1,7 @@
 from django.utils.timezone import now
 from rest_framework import generics
-from .models import Plants,Orders, OrderItems
+from plants.models import Plants, Orders, OrderItems
+
 from .serializers import PlantSerializer,OrderSerializer, OrderItemSerializer
 from rest_framework.response import Response
 from rest_framework import status

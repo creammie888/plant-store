@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Plants
-from .models import Orders, OrderItems
+from plants.models import Plants, Orders, OrderItems
+
 
 class PlantSerializer(serializers.ModelSerializer):
     class Meta:
