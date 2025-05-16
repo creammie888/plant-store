@@ -23,7 +23,6 @@ from django.http import JsonResponse
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/plants/', include('plants.urls')),  
-    path('api/orders/', include('plants.urls')), 
     path('', PlantListView.as_view(), name='home'),
     path('', lambda request: JsonResponse({"status": "ok"})), 
 ]
