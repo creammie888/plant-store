@@ -13,23 +13,23 @@ import Link from "next/link";
 
 export default function Home() {
   const [plants, setPlants] = useState([]);
-    
-    const router = useRouter();
-  
-    const handleClick = () => {
-      router.push('/catalog');
-    };
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/catalog');
+  };
 
   useEffect(() => {
+    // โหลด plant list
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/`)
       .then((response) => response.json())
       .then((data) => {
-        const top8 = data.slice(0, 8); // แสดงแค่ 8 อันดับแรก
+        const top8 = data.slice(0, 8);
         setPlants(top8);
       })
       .catch((error) => console.error("Error fetching plants:", error));
   }, []);
-
+  
 
   return (
     <div className="container">

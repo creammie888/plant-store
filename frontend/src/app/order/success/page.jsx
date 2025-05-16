@@ -1,13 +1,22 @@
 "use client";
-import React, { useEffect } from "react";
+
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "./success.css";
 
 export default function SuccessPage() {
   const router = useRouter();
+  const [orderId, setOrderId] = useState(null);
 
   useEffect(() => {
-    // ✅ ล้างตะกร้าและข้อมูลการสั่งซื้อ
+    // ✅ ดึง order_id ที่เพิ่งสั่ง
+    const id = localStorage.getItem("lastOrderId");
+    if (id) {
+      setOrderId(id);
+      localStorage.removeItem("lastOrderId");
+    }
+
+    // ✅ ล้างข้อมูลที่ไม่ต้องใช้แล้ว
     localStorage.removeItem("cart");
     localStorage.removeItem("discount");
     localStorage.removeItem("shippingAddress");
@@ -33,7 +42,10 @@ export default function SuccessPage() {
       <div className="success-box">
         <h1>Successful!</h1>
         <p className="success-p1">
-          Your Order is <span>no.123456</span>
+          Your Order is{" "}
+          <span>
+            {orderId ? `no.${orderId}` : "processing..."}
+          </span>
         </p>
         <p className="success-p2">Thank you for shopping with us</p>
         <button className="btn-continue" onClick={handleBack}>

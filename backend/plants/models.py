@@ -15,28 +15,35 @@ class Plants(models.Model):
     image_path = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     name_th = models.CharField(max_length=100, blank=True, null=True)
+    sunlight = models.CharField(max_length=255, blank=True, null=True)  # เพิ่มคอลัมน์ใหม่
+    water = models.CharField(max_length=255, blank=True, null=True)     # เพิ่มคอลัมน์ใหม่
+    care_tip = models.TextField(blank=True, null=True)                  # เพิ่มคอลัมน์ใหม่
+
 
     class Meta:
         managed = False
         db_table = 'plants'
 
 class Orders(models.Model):
-    customer_name = models.CharField(max_length=100)
-    customer_address = models.TextField()
-    customer_email = models.CharField(max_length=255)
+    id = models.AutoField(primary_key=True)
     created_at = models.DateTimeField()
-    
+    customer_name = models.CharField(max_length=255)
+    customer_address = models.TextField()
+    payment_method = models.CharField(max_length=50) 
     class Meta:
-        managed = False 
+        managed = False  
         db_table = 'orders'
 
 
 class OrderItems(models.Model):
-    order = models.ForeignKey(Orders, on_delete=models.DO_NOTHING, db_column='order_id')
-    plant = models.ForeignKey(Plants, on_delete=models.DO_NOTHING, db_column='plant_id')
+    id = models.AutoField(primary_key=True)
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    plant = models.ForeignKey('Plants', on_delete=models.CASCADE)
     quantity = models.IntegerField()
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         managed = False
         db_table = 'order_items'
+        
+

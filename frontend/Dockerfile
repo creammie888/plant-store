@@ -1,18 +1,15 @@
-FROM node:18
+# frontend/Dockerfile
+FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package.json และ lock file ก่อน เพื่อใช้ cache
 COPY package*.json ./
-
-# ติดตั้ง dependencies (รวม next dev แบบ local)
 RUN npm install
 
-# จากนั้นค่อย copy โค้ดทั้งหมด
 COPY . .
 
-# เปิด port สำหรับ Next.js (โดยปกติคือ 3000)
+RUN npm run build
+
 EXPOSE 3000
 
-# เริ่ม dev server ด้วย turbopack
-CMD ["npx", "next", "dev", "--turbo"]
+CMD ["npm", "start"]

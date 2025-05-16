@@ -8,6 +8,14 @@ import { handleAddToCart } from "@/utils/cart";
 import { LuCloud, LuSun, LuDroplet } from "react-icons/lu";
 import "@/styles/globals.css";
 
+const sunlightDescriptions = {
+  1: "Very low light",
+  2: "Low to medium light",
+  3: "Moderate light",
+  4: "Bright indirect light",
+  5: "Direct sunlight"
+};
+
 export default function ProductDetailPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -27,8 +35,10 @@ export default function ProductDetailPage() {
     if (id) fetchProduct();
   }, [id]);
 
-
   if (!product) return <p>Loading...</p>;
+
+  const sunlightLevel = parseInt(product.sunlight);
+  const sunlightText = sunlightDescriptions[sunlightLevel] || "Unknown light level";
 
   return (
     <div className="product-container-box">
@@ -42,19 +52,19 @@ export default function ProductDetailPage() {
 
         <div className="detail-box">
           <div className="detail-icon"><LuCloud /></div>
-          <SunlightLevelBar level={3} />
+          <SunlightLevelBar level={sunlightLevel} />
           <div className="detail-icon"><LuSun /></div>
-          <p>Bright indirect light</p>
+          <p>{sunlightText}</p>
         </div>
 
         <div className="detail-box">
           <div className="detail-icon"><LuDroplet /></div>
-          <p><span>2/week</span><br />Water</p>
+          <p><span>{product.water} / week</span><br />Water</p>
         </div>
 
         <div className="detail-tips">
           <p>Care Tips</p>
-          <p>Water once every 2–3 weeks, let soil dry completely. Tolerates low humidity and thrives in poor light.</p>
+          <p>{product.care_tip}</p>
         </div>
 
         <div className="detail-box">

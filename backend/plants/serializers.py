@@ -10,13 +10,12 @@ class PlantSerializer(serializers.ModelSerializer):
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItems
-        fields = '__all__'
+        fields = ['plant', 'quantity', 'item_price']
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True, read_only=True, source='orderitems_set')
+    items = OrderItemSerializer(many=True, source='orderitems_set')
 
     class Meta:
         model = Orders
-        fields = ['id', 'customer_name', 'customer_address', 'customer_email', 'created_at', 'items']
-
+        fields = ['id', 'created_at', 'customer_name', 'customer_address', 'payment_method', 'items']
 #แปลง object จาก models.py ให้กลายเป็น JSON เพื่อส่งให้ frontend เหมือนแปลงฟอร์มกระดาษเป็นไฟล์ .json ให้เว็บโหลดไปแสดงได้
