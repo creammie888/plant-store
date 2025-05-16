@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import Plants
+from .models import Plant
 from .models import Orders, OrderItems
 
 class PlantSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Plants
+        model = Plant
         fields = '__all__' # ส่งทุก field ที่มีใน model ไปให้ frontend
         
 class OrderItemSerializer(serializers.ModelSerializer):
