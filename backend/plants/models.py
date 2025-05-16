@@ -31,7 +31,7 @@ class Orders(models.Model):
     customer_address = models.TextField()
     payment_method = models.CharField(max_length=50) 
     class Meta:
-        managed = False  
+
         db_table = 'orders'
 
 
@@ -43,7 +43,7 @@ class OrderItems(models.Model):
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
-        managed = False
+
         db_table = 'order_items'
         
 
