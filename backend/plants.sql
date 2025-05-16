@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 14.18 (Homebrew)
--- Dumped by pg_dump version 14.18 (Homebrew)
+-- Dumped by pg_dump version 16.9 (Homebrew)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,9 +16,93 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: pornlavin
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+ALTER SCHEMA public OWNER TO pornlavin;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: order_items; Type: TABLE; Schema: public; Owner: pornlavin
+--
+
+CREATE TABLE public.order_items (
+    id integer NOT NULL,
+    order_id integer NOT NULL,
+    plant_id integer NOT NULL,
+    quantity integer NOT NULL,
+    price_each numeric(10,2) NOT NULL,
+    CONSTRAINT order_items_quantity_check CHECK ((quantity > 0))
+);
+
+
+ALTER TABLE public.order_items OWNER TO pornlavin;
+
+--
+-- Name: order_items_id_seq; Type: SEQUENCE; Schema: public; Owner: pornlavin
+--
+
+CREATE SEQUENCE public.order_items_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.order_items_id_seq OWNER TO pornlavin;
+
+--
+-- Name: order_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pornlavin
+--
+
+ALTER SEQUENCE public.order_items_id_seq OWNED BY public.order_items.id;
+
+
+--
+-- Name: orders; Type: TABLE; Schema: public; Owner: pornlavin
+--
+
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    customer_name character varying(100) NOT NULL,
+    customer_address text NOT NULL,
+    customer_email character varying(255) NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.orders OWNER TO pornlavin;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: pornlavin
+--
+
+CREATE SEQUENCE public.orders_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.orders_id_seq OWNER TO pornlavin;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pornlavin
+--
+
+ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
+
 
 --
 -- Name: plants; Type: TABLE; Schema: public; Owner: opol
@@ -49,7 +133,7 @@ CREATE SEQUENCE public.plants_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.plants_id_seq OWNER TO opol;
+ALTER SEQUENCE public.plants_id_seq OWNER TO opol;
 
 --
 -- Name: plants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: opol
@@ -59,10 +143,40 @@ ALTER SEQUENCE public.plants_id_seq OWNED BY public.plants.id;
 
 
 --
+-- Name: order_items id; Type: DEFAULT; Schema: public; Owner: pornlavin
+--
+
+ALTER TABLE ONLY public.order_items ALTER COLUMN id SET DEFAULT nextval('public.order_items_id_seq'::regclass);
+
+
+--
+-- Name: orders id; Type: DEFAULT; Schema: public; Owner: pornlavin
+--
+
+ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.orders_id_seq'::regclass);
+
+
+--
 -- Name: plants id; Type: DEFAULT; Schema: public; Owner: opol
 --
 
 ALTER TABLE ONLY public.plants ALTER COLUMN id SET DEFAULT nextval('public.plants_id_seq'::regclass);
+
+
+--
+-- Data for Name: order_items; Type: TABLE DATA; Schema: public; Owner: pornlavin
+--
+
+COPY public.order_items (id, order_id, plant_id, quantity, price_each) FROM stdin;
+\.
+
+
+--
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: pornlavin
+--
+
+COPY public.orders (id, customer_name, customer_address, customer_email, created_at) FROM stdin;
+\.
 
 
 --
@@ -78,7 +192,7 @@ COPY public.plants (id, name, price, image_path, description, name_th) FROM stdi
 7	Peace Lily	280.00	peace.png	เดหลี (Peace Lily) เป็นต้นไม้ประดับดอกสีขาวที่นิยมในบ้านและออฟฟิศ เพราะช่วยฟอกอากาศและกรองมลพิษในอากาศได้หลายชนิด เช่น เบนซีนและแอมโมเนีย ใบเขียวเข้มเงางาม ดอกสีขาวงามสง่า ชอบแสงสว่างรำไร ไม่ควรให้โดนแดดจัด รดน้ำให้ดินชื้นแต่ไม่แฉะ	เดหลี
 8	Spider Plant	190.00	spider.png	เศรษฐีเรือนใน (Spider Plant) เป็นต้นไม้ฟอกอากาศยอดนิยมที่โตเร็วและดูแลง่าย ใบเรียวยาวมีลายสีเขียวขาวสวยงาม ช่วยดูดสารพิษในอากาศ เช่น คาร์บอนมอนอกไซด์และฟอร์มัลดีไฮด์ เหมาะกับห้องที่มีแสงธรรมชาติ รดน้ำสัปดาห์ละ 1–2 ครั้งก็เพียงพอ	เศรษฐีเรือนใน
 9	Philodendron spp.	350.00	philodendron.png	ฟิโลเดนดรอน (Philodendron spp.) เป็นต้นไม้ใบสวยในตระกูลฟอกอากาศ ใบเขียวเข้มขนาดใหญ่ เพิ่มความรู้สึกสดชื่นและธรรมชาติในบ้าน ช่วยดูดสารพิษและเพิ่มความชื้นในอากาศได้ดี ชอบแสงรำไร ไม่ชอบแดดแรง โตได้ทั้งในดินและน้ำ เหมาะสำหรับวางมุมห้องหรือโต๊ะทำงาน	ฟิโลเดนดรอน เขียว
-10	Philodendron Selloum	370.00	selloum.png	ฟิโลเดนดรอน มะละกอ (Philodendron Selloum) มีลักษณะใบหยักขนาดใหญ่คล้ายใบมะละกอ สีเขียวสดใส ดูแลง่าย ช่วยดูดสารพิษในอากาศและเพิ่มความชุ่มชื้นให้กับบ้าน เหมาะสำหรับวางในห้องรับแขกหรือพื้นที่ที่ต้องการความเขียวขจี เติบโตดีในแสงรำไรและไม่ชอบน้ำมากเกินไป	ฟิโลเดนดรอน มะละกอ
+10	Philodendron Selloum	370.00	philodendron.png	ฟิโลเดนดรอน มะละกอ (Philodendron Selloum) มีลักษณะใบหยักขนาดใหญ่คล้ายใบมะละกอ สีเขียวสดใส ดูแลง่าย ช่วยดูดสารพิษในอากาศและเพิ่มความชุ่มชื้นให้กับบ้าน เหมาะสำหรับวางในห้องรับแขกหรือพื้นที่ที่ต้องการความเขียวขจี เติบโตดีในแสงรำไรและไม่ชอบน้ำมากเกินไป	ฟิโลเดนดรอน มะละกอ
 12	Dieffenbachia	240.00	dieffenbachia.png	สาวน้อยประแป้ง (Dieffenbachia) เป็นต้นไม้ฟอกอากาศที่มีใบใหญ่ ลวดลายสีเขียวแซมขาวสวยงาม สร้างบรรยากาศสดชื่นในบ้าน โตเร็วและทนทาน ชอบแสงรำไร รดน้ำสม่ำเสมอ ระวังอย่าให้สัตว์เลี้ยงหรือเด็กสัมผัสน้ำยาง เพราะอาจระคายเคืองได้	สาวน้อยประแป้ง
 13	Bird’s Nest Fern	270.00	bird.png	เฟิร์นข้าหลวง (Bird’s Nest Fern) เป็นต้นไม้ที่มีใบเรียงซ้อนคล้ายรังนก สีเขียวสด เพิ่มความชื้นในอากาศได้ดี เหมาะกับห้องน้ำหรือห้องที่มีอากาศแห้ง โตได้ในที่ร่มหรือแสงน้อย ต้องการความชื้นค่อนข้างสูง และควรรดน้ำตรงกลางของกอใบอย่างสม่ำเสมอ	เฟิร์นข้าหลวง
 14	Bacopa monnieri	200.00	bacopa.png	พรมมิ (Bacopa monnieri) เป็นต้นไม้น้ำขนาดเล็ก ใบสีเขียวสด โตช้าแต่ทน ช่วยเพิ่มความชุ่มชื้นและความสดชื่นในบ้าน เป็นสมุนไพรที่มีสรรพคุณช่วยบำรุงสมองในทางแพทย์แผนไทย ปลูกง่ายได้ทั้งในน้ำหรือดินในที่แสงรำไร	พรมมิ
@@ -94,10 +208,40 @@ COPY public.plants (id, name, price, image_path, description, name_th) FROM stdi
 
 
 --
+-- Name: order_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pornlavin
+--
+
+SELECT pg_catalog.setval('public.order_items_id_seq', 1, false);
+
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pornlavin
+--
+
+SELECT pg_catalog.setval('public.orders_id_seq', 1, false);
+
+
+--
 -- Name: plants_id_seq; Type: SEQUENCE SET; Schema: public; Owner: opol
 --
 
 SELECT pg_catalog.setval('public.plants_id_seq', 26, true);
+
+
+--
+-- Name: order_items order_items_pkey; Type: CONSTRAINT; Schema: public; Owner: pornlavin
+--
+
+ALTER TABLE ONLY public.order_items
+    ADD CONSTRAINT order_items_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: pornlavin
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
 
 
 --
@@ -106,6 +250,44 @@ SELECT pg_catalog.setval('public.plants_id_seq', 26, true);
 
 ALTER TABLE ONLY public.plants
     ADD CONSTRAINT plants_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: order_items order_items_order_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: pornlavin
+--
+
+ALTER TABLE ONLY public.order_items
+    ADD CONSTRAINT order_items_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id) ON DELETE CASCADE;
+
+
+--
+-- Name: order_items order_items_plant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: pornlavin
+--
+
+ALTER TABLE ONLY public.order_items
+    ADD CONSTRAINT order_items_plant_id_fkey FOREIGN KEY (plant_id) REFERENCES public.plants(id);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: pornlavin
+--
+
+REVOKE USAGE ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- Name: TABLE order_items; Type: ACL; Schema: public; Owner: pornlavin
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.order_items TO opol;
+
+
+--
+-- Name: TABLE orders; Type: ACL; Schema: public; Owner: pornlavin
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.orders TO opol;
 
 
 --
