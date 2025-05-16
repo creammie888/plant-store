@@ -23,8 +23,8 @@
     /* height: 315px; */
     height: 325px;
     overflow-y: scroll;
-    min-width: 400px;
-    max-width: 200px;
+    width: 400px;
+    min-width: 200px;
 
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: var(--secondary--color) transparent;
@@ -67,6 +67,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    min-width: 200px;
+    width: 400px;
 
 }
 
@@ -79,6 +81,7 @@
 .order-info {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     gap: 20px;
     align-items: center;
 }
@@ -86,6 +89,7 @@
 .order-info p {
     font-weight: 500;
     color: var(--primary--color);
+    margin-left: 20px;
 }
 
 .order-info p span{

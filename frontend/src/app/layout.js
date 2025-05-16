@@ -1,12 +1,21 @@
-import {Montserrat} from "next/font/google";
+// import {Montserrat} from "next/font/google";
+import { Poppins ,IBM_Plex_Sans_Thai } from 'next/font/google';
+import ScrollToTop from "@/components/ScrollToTop";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["100","200","300","400", "500", "700"],
-  display: "swap",
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100','200','300', '400', '500','600'], // เลือกน้ำหนักที่ใช้
+  variable: '--font-poppins',
+});
+
+const ibmThai = IBM_Plex_Sans_Thai({
+  subsets: ['thai'],
+  weight: ['300', '400', '500', '600'], // เลือกได้ตามต้องการ
+  variable: '--font-thai',
 });
 
 export const metadata = {
@@ -16,8 +25,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en"  className={`${montserrat.variable}`}>
+    <html lang="en"  className={`${poppins.variable} ${ibmThai.variable}`}>
       <body>
+          <ScrollToTop />
           <Navbar />
           <main>{children}</main>
           <Footer />

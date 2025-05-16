@@ -53,12 +53,7 @@ export default function OrderPage() {
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
-      .filter((item) => item.quantity > 0); // ลบสินค้าที่เหลือ 0
-    updateLocalStorage(updated);
-  };
-
-  const handleRemove = (id) => {
-    const updated = cartItems.filter((item) => item.id !== id);
+      .filter((item) => item.quantity > 0);
     updateLocalStorage(updated);
   };
 

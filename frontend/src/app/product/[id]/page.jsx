@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import FavoriteButton from "@/components/FavoriteButton";
 import SunlightLevelBar from "@/components/SunlightLevelBar";
+import { handleAddToCart } from "@/utils/cart";
 import { LuCloud, LuSun, LuDroplet } from "react-icons/lu";
 import "@/styles/globals.css";
 
@@ -26,20 +27,6 @@ export default function ProductDetailPage() {
     if (id) fetchProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existing = storedCart.find((item) => item.id === product.id);
-
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      storedCart.push({ ...product, quantity: 1 });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(storedCart));
-    alert("Added to cart successfully!");
-   
-  };
 
   if (!product) return <p>Loading...</p>;
 
@@ -51,7 +38,7 @@ export default function ProductDetailPage() {
 
       <div className="product-info">
         <h1>{product.name}</h1>
-        <p className="product-description">{product.description}</p>
+        <p className="product-description" lang="th">{product.description}</p>
 
         <div className="detail-box">
           <div className="detail-icon"><LuCloud /></div>
@@ -71,8 +58,8 @@ export default function ProductDetailPage() {
         </div>
 
         <div className="detail-box">
-          <p className="product-price">฿{product.price}</p> / piece
-          <button className="btn-add-cart3" onClick={handleAddToCart}>
+          <p className="product-price">฿{product.price}<span>/ piece</span></p>
+          <button className="btn-add-cart3" onClick={() => handleAddToCart(product)}>
             Add to Cart
           </button>
           <div className="btn-fav3"><FavoriteButton plantId={product.id} /></div>

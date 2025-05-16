@@ -7,10 +7,18 @@ import "./home.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import FavoriteButton from "@/components/FavoriteButton";
+import { useRouter } from 'next/navigation';
+import { handleAddToCart } from "@/utils/cart";
 import Link from "next/link";
 
 export default function Home() {
   const [plants, setPlants] = useState([]);
+    
+    const router = useRouter();
+  
+    const handleClick = () => {
+      router.push('/catalog');
+    };
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/`)
@@ -22,6 +30,7 @@ export default function Home() {
       .catch((error) => console.error("Error fetching plants:", error));
   }, []);
 
+
   return (
     <div className="container">
       <div className="home-page-container">
@@ -30,7 +39,7 @@ export default function Home() {
         </div>
         <div className="home-page-quotation">
           Place a plant near your window to boost<span> mood</span> and <span>air quality</span> <br />
-          <button className="btn-continue">
+          <button className="btn-continue" onClick={handleClick}>
             shop now →
           </button>
         </div>
@@ -79,21 +88,21 @@ export default function Home() {
             >
               {plants.map((plant) => (
                 <SwiperSlide key={plant.id}>
-                  <Link href={`/product/${plant.id}`} className="card-reccommend">
-                    <div className="image-box">
+                  <div className="card-reccommend">
+                    <Link className="image-box" href={`/product/${plant.id}`}>
                       <img src={`/plants/${plant.image_path}`} alt={plant.name} />
-                    </div>
+                    </Link>
                     <div className="card-info">
                       <p className="name">{plant.name}</p>
                       <div className="card-info-row">
                         <p className="price">฿{plant.price}</p>
                         <div className="container-btn">
-                          <button className="btn-add-cart">+</button>
+                          <button className="btn-add-cart" onClick={() => handleAddToCart(plant)}>+</button>
                           <FavoriteButton plantId={plant.id} />
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>

@@ -40,7 +40,7 @@ export default function ProductSlider() {
               <img src={`/plants/${item.image_path}`} alt={item.name} />
               <div className="text-overlay">
                 <h3>{item.name}</h3>
-                <p className="description">{item.description}</p>
+                <p className="description" lang="th">{item.description}</p>
                 <p className="price">฿{item.price}</p>
                 <div className="container-btn">
                   <button className="btn-add-cart">Add to cart</button>

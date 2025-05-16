@@ -84,20 +84,23 @@
   
   .card-info p{
       text-align: start;
-      font-size: 16px;
       font-weight: 500;
   }
+
+  .name{
+    font-size: 12px;
+}
   
   .price {
       color: var(--primary--color);
-      font-size: small;
-      margin-left: 10px;
+      font-size: 15px;
   }
 
   
     .card-info-row {
       display: flex;
       justify-content: space-between;
+      align-items: end;
     }
   
     .container-btn2 {

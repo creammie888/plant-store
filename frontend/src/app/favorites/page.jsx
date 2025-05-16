@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { FaHeart } from "react-icons/fa";
+import FavoriteButton from "@/components/FavoriteButton";
 import "./favorite.css";
 
 export default function FavoritesPage() {
@@ -25,20 +25,20 @@ export default function FavoritesPage() {
   const favoritePlants = plants.filter((plant) => favoriteMap[plant.id]);
 
   return (
-    <div className="container">
-      <h2>My Favorite Plants</h2>
-      <div className="recommend-container">
+    <div className="fav-page-container">
+      <h2><span>My Favorite</span> Plants</h2>
+      <div className="fav-container">
         {favoritePlants.length > 0 ? (
           favoritePlants.map((plant) => (
-            <div className="card-reccommend" key={plant.id}>
-              <div className="image-box">
-              <img src={`/plants/${plant.image_path}`} alt={plant.name} />
+            <div className="fav-product-container" key={plant.id}>
+              <div className="fav-image-box">
+                <img src={`/plants/${plant.image_path}`} alt={plant.name} />
+                <div className="card-info">
+                  <p className="name">{plant.name}</p>
+                  <p className="price">฿{plant.price}</p>
+                </div>
               </div>
-              <div className="card-info">
-                <p className="name">{plant.name}</p>
-                <p className="price">฿{plant.price}</p>
-                <FaHeart color="#e96e6e" />
-              </div>
+              <div className="btn-fav3"><FavoriteButton plantId={plant.id} /></div>
             </div>
           ))
         ) : (

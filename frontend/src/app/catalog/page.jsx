@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import ProductSlider from "@/components/ProductSlider";
 import FavoriteButton from "@/components/FavoriteButton";
+import { handleAddToCart } from "@/utils/cart";
 import Link from "next/link";
 import "./catalog.css";
 
@@ -20,6 +21,8 @@ export default function CatalogPage() {
       .catch((error) => console.error("Error fetching plants:", error));
   }, []);
 
+  
+
   return (
     <div className="catalog-container">
       <ProductSlider />
@@ -27,21 +30,21 @@ export default function CatalogPage() {
         <h1>All Products</h1>
         <div className="products-container">
           {plants.map((plant) => (
-            <Link href={`/product/${plant.id}`} key={plant.id} className="product">
-              <div className="image-box">
+            <div key={plant.id} className="product">
+              <Link className="image-box" href={`/product/${plant.id}`}>
                 <img src={`/plants/${plant.image_path}`} alt={plant.name} />
-              </div>
+              </Link>
               <div className="card-info">
                 <p className="name">{plant.name}</p>
                 <div className="card-info-row">
                   <p className="price">฿{plant.price}</p>
                   <div className="container-btn2">
-                    <button className="btn-add-cart2">+</button>
+                    <button className="btn-add-cart2" onClick={() => handleAddToCart(plant)}>+</button>
                     <FavoriteButton plantId={plant.id} />
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
