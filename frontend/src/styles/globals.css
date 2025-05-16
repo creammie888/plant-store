@@ -81,7 +81,7 @@ a {
 .product-description {
   font-size: 14px;
   color: #333;
-  width: 50%;
+  width: 70%;
 }
 
 
@@ -171,5 +171,44 @@ a {
 
 .btn-fav3:hover{
   transform: scale(1.2);
+}
+
+@media (max-width:800px) {
+  .product-container-box {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-image {
+    width: 80%;
+    margin: 30px;
+  }
+
+  .product-info {
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
+  
+  .product-info h1{
+    text-align: center;
+  }
+  
+  .product-description {
+    font-size: 13px;
+    width: 100%;
+  }
+
+  .detail-box .product-price {
+    font-size: 25px;
+  }
+
+  .detail-tips {
+    margin-bottom: 30px;
+  }
+
+
+  
 }
 

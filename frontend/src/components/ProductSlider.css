@@ -118,6 +118,47 @@
     width: 20px !important;
     border-radius: 10px !important;
   }
+
+  @media (min-width:800px) and (max-width:1200px) {
+    .slider-container {
+      width: 100%;
+      transform: scale(1);
+      padding: 0 20px;
+    }
+    .slide {
+      height: 50vh;
+    }
+    
+  }
+
+
+  @media (max-width:801px) {
+    .slider-container {
+      width: 95%;
+      transform: scale(1);
+    }
+    .slide {
+      height: 30vh;
+    }
+    .slide img {
+      width: 50%;
+      margin-bottom: 20px;
+    }
+
+    .text-overlay h3 {
+      font-size: 20px;
+      margin-bottom: 0px;
+    }
+  
+    .description {
+      font-size: 7px;
+      width: 100%;
+      margin-bottom: 0px;
+
+    }
+    
+  }
+  
   
 
   

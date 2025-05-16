@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { FaSearch, FaHeart, FaShoppingCart } from "react-icons/fa";
+import { FaSearch, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import "./navbar.css";
 import Link from "next/link";
 
@@ -10,11 +10,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const [cartCount, setCartCount] = useState(0);
   const [favCount, setFavCount] = useState(0);
-  const [isClient, setIsClient] = useState(false);
+
   const [searchText, setSearchText] = useState("");
+  // const [isClient, setIsClient] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setReady(true);
+    // setIsClient(true);
     const updateCounts = () => {
       const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
       const storedFavObj = JSON.parse(localStorage.getItem("favorites")) || {};
@@ -43,41 +47,51 @@ export default function Navbar() {
     }
   }, [searchText, pathname, router]);
 
-  return (
-    <nav>
-      <div className="nav-container">
-        <a href="/">Home</a>
-        <a href="/catalog">Catalog</a>
-        <a href="/contact">Contact</a>
-      </div>
-      <div className="logo">
-        <img className="logo-img" src="/logo.png" alt="Logo" />
-      </div>
-      <div className="nav-container">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="search"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-          <FaSearch className="search-icon" />
+    return (
+      <nav>
+        <div className="logo">
+          <img className="logo-img"src="/logo.png" alt="Logo" />
         </div>
-        <div className="icons">
-          <div className="icon-container">
-            <Link href="/favorites">
-              <button className="btn-fav"><FaHeart /></button>
-            </Link>
-            {isClient && <div className="quantity-container">{favCount}</div>}
+        <div className="nav-bar">
+          <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <FaTimes /> : <FaBars />}
           </div>
-          <div className="icon-container">
-            <Link href="/order">
-              <button className="btn-cart"><FaShoppingCart /></button>
-            </Link>
-            {cartCount > 0 && <div className="quantity-container">{cartCount}</div>}
+          <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+            <a href="/">Home</a>
+            <a href="/catalog">Catalog</a>
+            <a href="/contact">Contact</a>
+          </div>
+          <div className="nav-container">
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="search"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            <FaSearch className="search-icon" />
+          </div>
+          <div className="icons">
+            <div className="icon-container">
+              <Link href="/favorites">
+                <button className="btn-fav"><FaHeart /></button>
+              </Link>
+              {ready && favCount > 0 && (
+                <div className="quantity-container">{favCount}</div>
+              )}
+            </div>
+            <div className="icon-container">
+              <Link href="/order">
+                <button className="btn-cart"><FaShoppingCart /></button>
+              </Link>
+              {cartCount > 0 && (
+                <div className="quantity-container">{cartCount}</div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  );
-}
+
+        </div>
+      </nav>
+    );
+  }

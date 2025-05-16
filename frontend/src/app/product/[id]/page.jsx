@@ -68,7 +68,7 @@ export default function ProductDetailPage() {
         </div>
 
         <div className="detail-box">
-          <p className="product-price">฿{product.price}<span>/ piece</span></p>
+          <p className="product-price">฿{product.price}</p>
           <button className="btn-add-cart3" onClick={() => handleAddToCart(product)}>
             Add to Cart
           </button>

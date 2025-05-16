@@ -100,4 +100,14 @@
   .step-label.active {
     color: var(--secondary--color);
   }
+
+
   
+
+  @media (max-width: 800px) {
+    .step-progress {
+      transform: scale(0.7);
+    transform-origin: top center;
+    }
+
+  }

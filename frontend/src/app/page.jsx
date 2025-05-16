@@ -38,7 +38,10 @@ export default function Home() {
           <img src="./bg/4.png" alt="background" />
         </div>
         <div className="home-page-quotation">
-          Place a plant near your window to boost<span> mood</span> and <span>air quality</span> <br />
+          <p className="quotation-line">
+            Place a plant near your window to boost <span> mood</span> and
+            <span> air quality</span>
+          </p>
           <button className="btn-continue" onClick={handleClick}>
             shop now →
           </button>
@@ -81,10 +84,28 @@ export default function Home() {
               modules={[Pagination]}
               pagination={{ clickable: true }}
               spaceBetween={20}
-              slidesPerView={4}
-              slidesPerGroup={4}
               loop={true}
               grabCursor={true}
+              slidesPerView={4}
+              slidesPerGroup={4}
+              breakpoints={{
+                1200: {
+                  slidesPerView: 4,
+                  slidesPerGroup: 4,
+                },
+                1032: {
+                  slidesPerView: 3,
+                  slidesPerGroup: 3,
+                },
+                697: {
+                  slidesPerView: 2,
+                  slidesPerGroup: 2,
+                },
+                0: {
+                  slidesPerView: 1,
+                  slidesPerGroup: 1,
+                },
+              }}
             >
               {plants.map((plant) => (
                 <SwiperSlide key={plant.id}>
