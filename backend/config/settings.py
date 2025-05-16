@@ -57,12 +57,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Database (ใช้ DATABASE_URL จาก environment บน Render)
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL")
-    )
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
