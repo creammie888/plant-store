@@ -31,19 +31,19 @@ class Orders(models.Model):
     customer_address = models.TextField()
     payment_method = models.CharField(max_length=50) 
     class Meta:
-
+        managed = False
         db_table = 'orders'
 
 
 class OrderItems(models.Model):
     id = models.AutoField(primary_key=True)
-    order = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='items')
     plant = models.ForeignKey('Plants', on_delete=models.CASCADE)
     quantity = models.IntegerField()
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
-
+        managed = False
         db_table = 'order_items'
         
 
