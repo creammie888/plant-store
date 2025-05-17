@@ -1,19 +1,19 @@
 "use client";
 export const dynamic = "force-dynamic"; 
 import React, { useEffect, useState } from "react";
-import originalProducts from "@/data/products";
 import "./history.css";
 
 export default function OrderedPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-    // useEffect(() => {
-  //   const history = JSON.parse(localStorage.getItem("orderHistory")) || [];
-  //   if (history.length === 0) {
-  //     setLoading(false);
-  //     return;
-  //   }
+  useEffect(() => {
+    const history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+    if (history.length === 0) {
+      setLoading(false);
+      return;
+    }
 
     Promise.all(
       history.map((id) =>
@@ -26,10 +26,7 @@ export default function OrderedPage() {
       setOrders(filtered);
       setLoading(false);
     });
-
-
-
-  
+  }, []);
 
   return (
     <div className="order-page">
@@ -75,7 +72,7 @@ export default function OrderedPage() {
                                 {order.items.map((item, idx) => (
                                   <div key={idx} className="order-history">
                                     <div className="order-left">
-                                      <img src={item.image} alt="image" />
+                                      <img src={`${item.image_path}`} alt="image" />
                                       <p>{item.plant} <br />฿{item.item_price}</p>
                                     </div>
                                     
