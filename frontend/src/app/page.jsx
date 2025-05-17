@@ -22,6 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     // โหลด plant list
+    console.log("api link",process.env.NEXT_PUBLIC_BACKEND_URL)
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/`)
       .then((response) => response.json())
       .then((data) => {
