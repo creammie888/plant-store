@@ -3,8 +3,7 @@ services:
     name: plantshop-backend
     env: docker
     repo: https://github.com/creammie888/plant-store
-    dockerfilePath: backend/Dockerfile
-    # ❌ ลบ buildFilter ทิ้งเพื่อให้เห็นไฟล์ทุกไฟล์
+    dockerfilePath: Dockerfile  # ✅ ถูกต้องแล้ว เพราะย้ายมา root แล้ว
     startCommand: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     envVars:
       - key: SECRET_KEY
@@ -23,7 +22,6 @@ services:
     env: docker
     repo: https://github.com/creammie888/plant-store
     dockerfilePath: frontend/Dockerfile
-    # ✅ buildFilter อันนี้ใช้ได้ เพราะอยู่ในโฟลเดอร์ frontend/
     buildFilter:
       paths:
         - frontend/**
