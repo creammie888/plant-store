@@ -7,7 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import "./ProductSlider.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import FavoriteButton from "../../../components/FavoriteButton";
+import FavoriteButton from "@/components/FavoriteButton";
 
 export default function ProductSlider() {
   const [plants, setPlants] = useState([]);

@@ -1,20 +1,16 @@
 "use client";
-export const dynamic = "force-dynamic";
-
+export const dynamic = "force-dynamic"; 
 import { useEffect, useState } from "react";
 import { FaShippingFast, FaBoxOpen, FaTag } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-
-import "../home.css";
+import "./home.css";
 import "swiper/css";
 import "swiper/css/pagination";
-
-import FavoriteButton from "../components/FavoriteButton";
-import { useRouter } from "next/navigation";
-import { handleAddToCart } from "../utils/cart";
+import FavoriteButton from "@/components/FavoriteButton";
+import { useRouter } from 'next/navigation';
+import { handleAddToCart } from "@/utils/cart";
 import Link from "next/link";
-
 
 export default function Home() {
   const [plants, setPlants] = useState([]);

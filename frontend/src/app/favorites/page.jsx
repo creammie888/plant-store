@@ -1,7 +1,7 @@
 "use client";
 export const dynamic = "force-dynamic"; 
 import React, { useEffect, useState } from "react";
-import FavoriteButton from "../../../components/FavoriteButton";
+import FavoriteButton from "@/components/FavoriteButton";
 import "./favorite.css";
 
 export default function FavoritesPage() {
