@@ -17,5 +17,5 @@ class OrderSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Orders
-        fields = ['id', 'created_at', 'customer_name', 'customer_address', 'payment_method', 'items']
+        fields = ['id', 'created_at', 'customer_name', 'customer_address', 'payment_method']
 #แปลง object จาก models.py ให้กลายเป็น JSON เพื่อส่งให้ frontend เหมือนแปลงฟอร์มกระดาษเป็นไฟล์ .json ให้เว็บโหลดไปแสดงได้
