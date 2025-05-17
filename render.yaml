@@ -3,20 +3,21 @@ services:
     name: plantshop-backend
     env: docker
     repo: https://github.com/creammie888/plant-store
-    dockerfilePath: Dockerfile  # ✅ ถูกต้องแล้ว เพราะย้ายมา root แล้ว
+    dockerfilePath: backend/Dockerfile        # ✅ อยู่ใน backend
+    buildCommand: ""                          # ✅ ปล่อยว่างถ้าใช้ Dockerfile กำหนดเอง
+    startCommand: ""                          # ✅ ปล่อยว่างถ้าใช้ CMD ใน Dockerfile
+    buildFilter:
+      paths:
+        - backend/**
 
-    
     envVars:
       - key: SECRET_KEY
         value: your-production-secret-key
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: plantshop-backend.onrender.com
-      - key: DATABASE_URL
-        fromDatabase:
-          name: plantshop-db
-          property: connectionString
+        value: plant-store-oue2.onrender.com   # ✅ ใช้ domain จริงของ backend
+      # ❌ ไม่ใส่ DATABASE_URL เพราะจะเพิ่มเองใน Environment หน้าเว็บ
 
   - type: web
     name: plantshop-frontend
