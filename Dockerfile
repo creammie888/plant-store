@@ -3,11 +3,11 @@ FROM python:3.12-slim
 WORKDIR /app
 
 COPY requirements.txt .
+RUN pip install --upgrade pip \
+ && pip install -r requirements.txt
 
-RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY backend/ ./backend/
 
-COPY . .
+RUN python backend/manage.py collectstatic --noinput
 
-RUN python manage.py collectstatic --noinput
-
-CMD ["python", "-m", "gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["python", "-m", "gunicorn", "backend.config.wsgi:application", "--chdir", "backend", "--bind", "0.0.0.0:8000"]
