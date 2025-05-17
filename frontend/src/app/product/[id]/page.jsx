@@ -24,7 +24,7 @@ export default function ProductDetailPage() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await fetch(`http://localhost:8000/api/plants/${id}/`);
+        const res = await fetch(`https://plantshop-frontend.onrender.com/api/plants/${id}/`);
         const data = await res.json();
         setProduct(data);
       } catch (err) {

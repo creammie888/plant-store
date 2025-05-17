@@ -16,7 +16,7 @@ export default function OrderedPage() {
 
     Promise.all(
       history.map((id) =>
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/orders/${id}/`)
+        fetch(`https://plantshop-frontend.onrender.com/api/plants/orders/${id}/`)
           .then((res) => res.json())
           .catch((err) => null)
       )
