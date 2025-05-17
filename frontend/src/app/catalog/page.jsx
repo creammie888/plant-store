@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic"; 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import ProductSlider from "@/components/ProductSlider";
@@ -13,7 +14,9 @@ export default function CatalogPage() {
   const searchTerm = searchParams.get("search")?.toLowerCase() || "";
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/`)
+    if (typeof window === "undefined") return; // 🛑 กัน SSR ตอน build
+
+    fetch(`https://plantshop-backend.onrender.com/api/plants/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch plants");
@@ -22,11 +25,10 @@ export default function CatalogPage() {
       })
       .then((data) => {
         if (searchTerm) {
-          // กรองต้นไม้ที่ชื่อ หรือชื่อไทย หรือคำอธิบาย เริ่มต้นด้วย searchTerm เท่านั้น
           const filtered = data.filter((plant) => {
             const name = plant.name.toLowerCase();
-            const nameTh = plant.name_th ? plant.name_th.toLowerCase() : "";
-            const desc = plant.description ? plant.description.toLowerCase() : "";
+            const nameTh = plant.name_th?.toLowerCase() || "";
+            const desc = plant.description?.toLowerCase() || "";
 
             return (
               name.startsWith(searchTerm) ||

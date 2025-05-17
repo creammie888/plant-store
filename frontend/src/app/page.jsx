@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic"; 
 import { useEffect, useState } from "react";
 import { FaShippingFast, FaBoxOpen, FaTag } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,7 +22,8 @@ export default function Home() {
 
   useEffect(() => {
     // โหลด plant list
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/`)
+    //console.log("api link",process.env.NEXT_PUBLIC_BACKEND_URL)
+    fetch(`https://plantshop-backend.onrender.com/api/plants/`)
       .then((response) => response.json())
       .then((data) => {
         const top8 = data.slice(0, 8);

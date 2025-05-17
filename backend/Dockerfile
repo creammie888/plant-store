@@ -1,13 +1,14 @@
+# backend/Dockerfile
+
 FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY backend/requirements.txt ./requirements.txt
+COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY backend/ ./
+COPY . /app
 
-# ไม่ run migrate ตอน build
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput || true
 
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

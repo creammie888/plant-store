@@ -1,6 +1,6 @@
 // src/order/layout.js
 "use client"
-
+export const dynamic = "force-dynamic"; 
 import React from "react";
 import CartSwitch from "@/components/CartSwitch";
 import StepProgress from "@/components/StepProgress";

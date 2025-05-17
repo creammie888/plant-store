@@ -1,5 +1,5 @@
 "use client";
-
+export const dynamic = "force-dynamic"; 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -24,7 +24,7 @@ export default function ProductDetailPage() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await fetch(`http://localhost:8000/api/plants/${id}/`);
+        const res = await fetch(`https://plantshop-backend.onrender.com/api/plants/${id}/`);
         const data = await res.json();
         setProduct(data);
       } catch (err) {

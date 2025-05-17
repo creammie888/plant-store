@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic"; 
 import React, { useEffect, useState } from "react";
 import "./history.css";
 
@@ -15,7 +16,7 @@ export default function OrderedPage() {
 
     Promise.all(
       history.map((id) =>
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/orders/${id}/`)
+        fetch(`https://plantshop-backend.onrender.com/api/plants/orders/${id}/`)
           .then((res) => res.json())
           .catch((err) => null)
       )

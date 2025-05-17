@@ -1,5 +1,5 @@
 "use client";
-
+export const dynamic = "force-dynamic"; 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "./confirm.css";
@@ -43,7 +43,7 @@ export default function ConfirmOrderPage() {
     };
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/orders/create/`, {
+      const response = await fetch(`https://plantshop-backend.onrender.com/api/plants/orders/create/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

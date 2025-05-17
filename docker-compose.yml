@@ -22,6 +22,7 @@ services:
   backend:
     build:
       context: ./backend
+      dockerfile: Dockerfile  
     container_name: django_backend
     command: >
       sh -c "

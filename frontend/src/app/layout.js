@@ -1,4 +1,5 @@
 // import {Montserrat} from "next/font/google";
+export const dynamic = "force-dynamic"; 
 import { Poppins ,IBM_Plex_Sans_Thai } from 'next/font/google';
 import ScrollToTop from "@/components/ScrollToTop";
 import Navbar from "@/components/Navbar";
