@@ -13,7 +13,7 @@ export default function ProductSlider() {
   const [plants, setPlants] = useState([]);
 
   useEffect(() => {
-    fetch(`https://plantshop-frontend.onrender.com/api/plants/`)
+    fetch(`https://plantshop-backend.onrender.com/api/plants/`)
       .then((res) => res.json())
       .then((data) => {
         // สุ่ม 5 ตัวจากทั้งหมด

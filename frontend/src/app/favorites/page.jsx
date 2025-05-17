@@ -10,7 +10,7 @@ export default function FavoritesPage() {
 
   useEffect(() => {
     // โหลดข้อมูลต้นไม้ทั้งหมด
-    fetch(`https://plantshop-frontend.onrender.com/api/plants/`)
+    fetch(`https://plantshop-backend.onrender.com/api/plants/`)
       .then((res) => res.json())
       .then((data) => setPlants(data))
       .catch((err) => console.error("Error loading plants", err));

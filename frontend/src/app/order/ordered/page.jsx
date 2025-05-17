@@ -16,7 +16,7 @@ export default function OrderedPage() {
 
     Promise.all(
       history.map((id) =>
-        fetch(`https://plantshop-frontend.onrender.com/api/plants/orders/${id}/`)
+        fetch(`https://plantshop-backend.onrender.com/api/plants/orders/${id}/`)
           .then((res) => res.json())
           .catch((err) => null)
       )
