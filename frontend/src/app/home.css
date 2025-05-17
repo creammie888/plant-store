@@ -320,6 +320,12 @@
   }
 
 
+
+  .container-home-foot {
+    margin-top: 100px;
+  }
+
+
   .foot-quotation {
     font-size: 25px;
     width: 60%;
@@ -327,7 +333,7 @@
     text-align: center;
     margin-top: 100px;
     position: absolute;
-    bottom: 14%;
+    bottom: 13%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -425,6 +431,16 @@
   .recommend-container {
     width: 80%;
     padding: 20px 10px;
+  }
+
+  .container-home-foot {
+    margin-top: 120px;
+  }
+
+
+  .foot-quotation {
+    font-size: 15px;
+    bottom: 8%;
   }
     
 
