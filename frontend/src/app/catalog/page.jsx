@@ -16,7 +16,7 @@ export default function CatalogPage() {
   useEffect(() => {
     if (typeof window === "undefined") return; // 🛑 กัน SSR ตอน build
 
-    fetch(`https://plantshop-frontend.onrender.com/api/plants/`)
+    fetch(`https://plantshop-backend.onrender.com/api/plants/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch plants");
