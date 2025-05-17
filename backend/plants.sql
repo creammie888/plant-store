@@ -21,6 +21,81 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: order_items; Type: TABLE; Schema: public; Owner: opol
+--
+
+CREATE TABLE public.order_items (
+    id integer NOT NULL,
+    order_id integer,
+    plant_id integer,
+    quantity integer,
+    price_each numeric(10,2),
+    item_price numeric(10,2)
+);
+
+
+ALTER TABLE public.order_items OWNER TO opol;
+
+--
+-- Name: order_items_id_seq; Type: SEQUENCE; Schema: public; Owner: opol
+--
+
+CREATE SEQUENCE public.order_items_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.order_items_id_seq OWNER TO opol;
+
+--
+-- Name: order_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: opol
+--
+
+ALTER SEQUENCE public.order_items_id_seq OWNED BY public.order_items.id;
+
+
+--
+-- Name: orders; Type: TABLE; Schema: public; Owner: opol
+--
+
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    customer_name character varying(100),
+    customer_address text,
+    payment_method character varying(50)
+);
+
+
+ALTER TABLE public.orders OWNER TO opol;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: opol
+--
+
+CREATE SEQUENCE public.orders_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.orders_id_seq OWNER TO opol;
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: opol
+--
+
+ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
+
+
+--
 -- Name: plants; Type: TABLE; Schema: public; Owner: opol
 --
 
@@ -62,10 +137,50 @@ ALTER SEQUENCE public.plants_id_seq OWNED BY public.plants.id;
 
 
 --
+-- Name: order_items id; Type: DEFAULT; Schema: public; Owner: opol
+--
+
+ALTER TABLE ONLY public.order_items ALTER COLUMN id SET DEFAULT nextval('public.order_items_id_seq'::regclass);
+
+
+--
+-- Name: orders id; Type: DEFAULT; Schema: public; Owner: opol
+--
+
+ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.orders_id_seq'::regclass);
+
+
+--
 -- Name: plants id; Type: DEFAULT; Schema: public; Owner: opol
 --
 
 ALTER TABLE ONLY public.plants ALTER COLUMN id SET DEFAULT nextval('public.plants_id_seq'::regclass);
+
+
+--
+-- Data for Name: order_items; Type: TABLE DATA; Schema: public; Owner: opol
+--
+
+COPY public.order_items (id, order_id, plant_id, quantity, price_each, item_price) FROM stdin;
+4	3	2	2	\N	450.00
+5	4	1	1	\N	550.00
+6	5	6	1	\N	260.00
+7	5	8	1	\N	190.00
+8	5	12	1	\N	240.00
+9	6	3	1	\N	290.00
+\.
+
+
+--
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: opol
+--
+
+COPY public.orders (id, created_at, customer_name, customer_address, payment_method) FROM stdin;
+3	2025-05-16 14:56:47.343421	รร	ำำำำ, ห/ำ_ก, ๆๆๆ, /ำก/ำก	
+4	2025-05-16 15:35:47.835546	op	popo, ooo, op, ssss	
+5	2025-05-16 15:37:00.461297	qqqq	qqqq, qqq, qqqq, qqqq	
+6	2025-05-16 15:39:29.090796	หหห	หหห, หหหห, หหห, หหห	
+\.
 
 
 --
@@ -97,10 +212,40 @@ COPY public.plants (id, name, price, image_path, description, name_th, sunlight,
 
 
 --
+-- Name: order_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: opol
+--
+
+SELECT pg_catalog.setval('public.order_items_id_seq', 9, true);
+
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: opol
+--
+
+SELECT pg_catalog.setval('public.orders_id_seq', 6, true);
+
+
+--
 -- Name: plants_id_seq; Type: SEQUENCE SET; Schema: public; Owner: opol
 --
 
 SELECT pg_catalog.setval('public.plants_id_seq', 26, true);
+
+
+--
+-- Name: order_items order_items_pkey; Type: CONSTRAINT; Schema: public; Owner: opol
+--
+
+ALTER TABLE ONLY public.order_items
+    ADD CONSTRAINT order_items_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: opol
+--
+
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
 
 
 --
@@ -109,6 +254,22 @@ SELECT pg_catalog.setval('public.plants_id_seq', 26, true);
 
 ALTER TABLE ONLY public.plants
     ADD CONSTRAINT plants_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: order_items order_items_order_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: opol
+--
+
+ALTER TABLE ONLY public.order_items
+    ADD CONSTRAINT order_items_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id);
+
+
+--
+-- Name: order_items order_items_plant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: opol
+--
+
+ALTER TABLE ONLY public.order_items
+    ADD CONSTRAINT order_items_plant_id_fkey FOREIGN KEY (plant_id) REFERENCES public.plants(id);
 
 
 --
