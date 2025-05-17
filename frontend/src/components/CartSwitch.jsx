@@ -13,7 +13,7 @@ const CartSwitch = ({ activeTab }) => {
             </div>
             <div className='switch-button'>
                 <Link href="/order/ordered">
-                    <button className={activeTab === 'ordered' ? 'active' : ''}>Ordered</button>
+                    <button className={activeTab === 'ordered' ? 'active' : ''}>Purchase History</button>
                 </Link>
             </div>
         </div>

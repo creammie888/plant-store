@@ -64,7 +64,7 @@ export default function ProductDetailPage() {
 
         <div className="detail-tips">
           <p>Care Tips</p>
-          <p>{product.care_tip}</p>
+          <p lang="th">{product.care_tip}</p>
         </div>
 
         <div className="detail-box">

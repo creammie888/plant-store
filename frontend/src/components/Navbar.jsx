@@ -18,7 +18,6 @@ export default function Navbar() {
 
   useEffect(() => {
     setReady(true);
-    // setIsClient(true);
     const updateCounts = () => {
       const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
       const storedFavObj = JSON.parse(localStorage.getItem("favorites")) || {};

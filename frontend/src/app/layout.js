@@ -9,13 +9,13 @@ import "@/styles/globals.css";
 
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['100','200','300', '400', '500','600'], // เลือกน้ำหนักที่ใช้
+  weight: ['100','200','300', '400', '500','600'],
   variable: '--font-poppins',
 });
 
 const ibmThai = IBM_Plex_Sans_Thai({
   subsets: ['thai'],
-  weight: ['300', '400', '500', '600'], // เลือกได้ตามต้องการ
+  weight: ['300', '400', '500', '600'],
   variable: '--font-thai',
 });
 

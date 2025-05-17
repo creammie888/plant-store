@@ -6,11 +6,16 @@
     width: 100%;
     height: auto;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: start;
     gap: 20px;
     flex-wrap: wrap;
 
+}
+
+.empty-cart-msg {
+    text-align: center;
 }
 
 .order-container1 {
