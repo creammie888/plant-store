@@ -1,9 +1,9 @@
 // import {Montserrat} from "next/font/google";
 import { Poppins ,IBM_Plex_Sans_Thai } from 'next/font/google';
-import ScrollToTop from "@/components/ScrollToTop";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import "@/styles/globals.css";
+import ScrollToTop from "../components/ScrollToTop";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import "../styles/globals.css";
 
 
 const poppins = Poppins({
