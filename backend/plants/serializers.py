@@ -8,9 +8,10 @@ class PlantSerializer(serializers.ModelSerializer):
         fields = '__all__' # ส่งทุก field ที่มีใน model ไปให้ frontend
         
 class OrderItemSerializer(serializers.ModelSerializer):
+    image_path = serializers.CharField(source='plant.image_path', read_only=True)
     class Meta:
         model = OrderItems
-        fields = ['plant', 'quantity', 'item_price']
+        fields = ['plant', 'quantity', 'item_price', 'image_path']
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)
