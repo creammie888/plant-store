@@ -13,7 +13,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
         fields = ['plant', 'quantity', 'item_price']
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True)
+    #items = OrderItemSerializer(many=True)
     
     class Meta:
         model = Orders
