@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# 👇 ติดตั้ง gunicorn ซ้ำ เพื่อกันกรณีมันไม่อยู่ใน global path
+# ✅ ติดตั้ง gunicorn อีกครั้งแบบชัวร์
 RUN pip install gunicorn
 
 COPY backend/ .
