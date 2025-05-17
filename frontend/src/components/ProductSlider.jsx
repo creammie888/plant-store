@@ -8,6 +8,7 @@ import "./ProductSlider.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import FavoriteButton from "@/components/FavoriteButton";
+import Link from "next/link";
 
 export default function ProductSlider() {
   const [plants, setPlants] = useState([]);
@@ -43,7 +44,9 @@ export default function ProductSlider() {
                 <p className="description" lang="th">{item.description}</p>
                 <p className="price">฿{item.price}</p>
                 <div className="container-btn">
-                  <button className="btn-add-cart">Add to cart</button>
+                  <Link href={`/product/${item.id}`}>
+                    <button className="btn-add-cart">See more</button>
+                  </Link>
                   <FavoriteButton plantId={item.id} />
                 </div>
               </div>

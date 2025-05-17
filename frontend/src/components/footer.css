@@ -1,12 +1,11 @@
 footer {
-    margin-top: 100px;
     padding: 30px 100px;
     background-color: var(--secondary--color);
     color: white;
 }
 
 .footer-container {
-    margin: 30px;
+    margin: 0px;
 }
 
 .footer-info {

@@ -6,6 +6,7 @@ import FavoriteButton from "@/components/FavoriteButton";
 import SunlightLevelBar from "@/components/SunlightLevelBar";
 import { handleAddToCart } from "@/utils/cart";
 import { LuCloud, LuSun, LuDroplet } from "react-icons/lu";
+import { PawPrint } from 'lucide-react';
 import "@/styles/globals.css";
 
 const sunlightDescriptions = {
@@ -60,6 +61,10 @@ export default function ProductDetailPage() {
         <div className="detail-box">
           <div className="detail-icon"><LuDroplet /></div>
           <p><span>{product.water} / week</span><br />Water</p>
+        </div>
+        <div className="detail-box">
+          <div className="detail-icon"><PawPrint /></div>
+          <p>Pet Friendly</p>
         </div>
 
         <div className="detail-tips">

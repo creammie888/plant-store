@@ -132,6 +132,10 @@ export default function Home() {
           </div>
         </div>
       </div>
+        <p className="foot-quotation">“Every plant you choose brings <span>a little more life to the world</span> — and a little more joy to your day.”</p>
+        <div className="foot-image">
+          <img src="./foot-bg/3.png" alt="background" />
+        </div>
     </div>
   );
 }

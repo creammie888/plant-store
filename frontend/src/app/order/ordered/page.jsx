@@ -26,7 +26,7 @@ export default function OrderedPage() {
       setOrders(filtered);
       setLoading(false);
     });
-  }, []); // ✅ อย่าลืมใส่ dependency array
+  }, []);
 
   return (
     <div className="order-page">
