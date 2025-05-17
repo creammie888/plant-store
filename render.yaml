@@ -4,7 +4,7 @@ services:
     env: docker
     repo: https://github.com/creammie888/plant-store
     dockerfilePath: Dockerfile  # ✅ ถูกต้องแล้ว เพราะย้ายมา root แล้ว
-    startCommand: gunicorn config.wsgi:application --chdir backend --bind 0.0.0.0:8000
+    startCommand: gunicorn backend.config.wsgi:application --chdir backend --bind 0.0.0.0:8000
     envVars:
       - key: SECRET_KEY
         value: your-production-secret-key
