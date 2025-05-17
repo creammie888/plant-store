@@ -2,9 +2,9 @@ export const dynamic = "force-dynamic";
 "use client";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import ProductSlider from "@/components/ProductSlider";
-import FavoriteButton from "@/components/FavoriteButton";
-import { handleAddToCart } from "@/utils/cart";
+import ProductSlider from "../../../components/ProductSlider";
+import FavoriteButton from "../../../components/FavoriteButton";
+import { handleAddToCart } from "../../../utils/cart";
 import Link from "next/link";
 import "./catalog.css";
 

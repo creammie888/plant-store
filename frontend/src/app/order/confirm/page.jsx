@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "./confirm.css";
-import "@/app/order/order.css";
+import "../../../app/order/order.css";
 
 export default function ConfirmOrderPage() {
   const router = useRouter();

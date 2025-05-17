@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import FavoriteButton from "@/components/FavoriteButton";
-import SunlightLevelBar from "@/components/SunlightLevelBar";
-import { handleAddToCart } from "@/utils/cart";
+import FavoriteButton from "../../../components/FavoriteButton";
+import SunlightLevelBar from "../../../components/SunlightLevelBar";
+import { handleAddToCart } from "../../../utils/cart";
 import { LuCloud, LuSun, LuDroplet } from "react-icons/lu";
-import "@/styles/globals.css";
+import "../../../styles/globals.css";
 
 const sunlightDescriptions = {
   1: "Very low light",
@@ -24,7 +24,7 @@ export default function ProductDetailPage() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await fetch(`http://localhost:8000/api/plants/${id}/`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/plants/${id}/`);
         const data = await res.json();
         setProduct(data);
       } catch (err) {
