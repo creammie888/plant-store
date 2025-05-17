@@ -4,9 +4,11 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install --upgrade pip \
- && pip install -r requirements.txt \
- && echo '✅ Gunicorn install check:' && which gunicorn && gunicorn --version
+RUN pip install --upgrade pip && \
+    pip install gunicorn && \
+    pip install -r requirements.txt && \
+    echo "✅ gunicorn path:" $(which gunicorn) && \
+    gunicorn --version
 
 COPY backend/ ./backend/
 
