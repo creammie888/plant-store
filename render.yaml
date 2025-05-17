@@ -4,6 +4,7 @@ services:
     env: docker
     repo: https://github.com/creammie888/plant-store
     dockerfilePath: Dockerfile  # ✅ ถูกต้องแล้ว เพราะย้ายมา root แล้ว
+    startCommand: ""
     
     envVars:
       - key: SECRET_KEY
