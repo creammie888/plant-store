@@ -1,17 +1,17 @@
 FROM python:3.12-slim
 
-# 1. สร้าง working directory
+# 1. Set working directory ให้ตรงกับที่มี manage.py
 WORKDIR /app
 
 # 2. คัดลอก requirements และติดตั้ง dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# 3. คัดลอก source code จาก backend เข้ามาใน /app
+# 3. คัดลอก backend ทั้งหมดเข้ามา
 COPY backend/ /app
 
-# 4. รัน collectstatic ถ้ามี static files
+# 4. รัน collectstatic (optional ถ้าใช้)
 RUN python manage.py collectstatic --noinput || true
 
-# 5. สั่งให้ Django รัน server บน 0.0.0.0:8000
+# 5. รัน Django server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
